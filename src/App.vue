@@ -1,15 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Title title="Catatan Pengeluaran"/>
+  <FormMahasiswa @entri-mahasiswa = "entriMahasiswa($event)"/>
+  <ListMahasiswa v-if="dataMahasiswa.length>0" :dataMahasiswalist="dataMahasiswa"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Title from './components/Title.vue'
+import ListMahasiswa from './components/ListMahasiswa.vue'
+import FormMahasiswa from './components/FormMahasiswa.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Title,
+    ListMahasiswa,
+    FormMahasiswa,
+  },
+  data(){
+    return{
+      dataMahasiswa : [
+        {nim: 'D111811072', nama: 'Gilang Prasetya', kelas: 'IF-6B'},
+        {nim: 'D111811071', nama: 'Gogol Prasetya', kelas: 'IF-6B'},
+        {nim: 'D111811073', nama: 'Gilang Gogol Prasetya', kelas: 'IF-6B'}
+      ],
+    }
+  },
+  methods:{
+    entriMahasiswa(event){
+      this.dataMahasiswa.push(event);
+    }
   }
 }
 </script>
